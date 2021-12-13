@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GIADINHGIS</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+<link rel="stylesheet" href="css.css"/>
+<script src="https://js.arcgis.com/4.3/"></script>
+
+<script>
+require([
+"esri/Map",
+"esri/views/MapView",
+"esri/layers/MapImageLayer",
+"esri/layers/FeatureLayer",
+"esri/widgets/Expand",
+"esri/widgets/LayerList",
+"esri/widgets/Legend",
+"esri/widgets/Home",
+"esri/widgets/Search",
+"esri/tasks/IdentifyTask",
+"esri/tasks/support/IdentifyParameters",
+"esri/symbols/PictureMarkerSymbol",
+"esri/request",
+"dojo/_base/array",
+"dojo/dom",
+"dojo/on",
+"dojo/domReady!"
+], function (Map, MapView, MapImageLayer, FeatureLayer, 
+			 Expand,  LayerList, Legend, Home, Search,
+			 IdentifyTask, IdentifyParameters,
+	         PictureMarkerSymbol,
+	         esriRequest, 
+	         arrayUtils, dom, on) {
+
+/********************
+* Add Data
+********************/
+//**var url_scada = "http://192.168.23.159:6080/arcgis/rest/services/SCADA/MapServer";**//
+//**var layer_scada = new MapImageLayer({url: url_scada, opacity: 0.8});**//
+var url_network = "http://192.168.23.159:6080/arcgis/rest/services/NETWORK/MapServer";
+var layer_network = new MapImageLayer({url: url_network});
+var url_basemap = "http://192.168.23.159:6080/arcgis/rest/services/BASEMAP/MapServer";
+var layer_basemap = new MapImageLayer({url: url_basemap});
+//var url_boundary = "http://192.168.23.159:6080/arcgis/rest/services/BOUNDARY/MapServer";//
+//var layer_boundary = new MapImageLayer({url: url_boundary});//
+var map = new Map({layers: [layer_basemap, layer_boundary, layer_network, layer_scada]});
+var view = new MapView({container: "ui-map-view",map: map});
+
+/********************
+* Add widgets
+********************/
+// widget HomeButton
+var homeBtnWidget = new Home({view: view});
+view.ui.add(homeBtnWidget, "top-left");
+// widget LayerList
+view.then(function() {var layerListWidget = new LayerList({view: view});
+view.ui.add(layerListWidget, "top-right");});
+// widget Legend
+var legendWidget = new Legend({view: view,layerInfos: [{layer: layer_network, title: "Bảng Chú Thích"}]});
+// widget Search
+var searchWidget = new Search({view: view, allPlaceholder: "Tìm kiếm"});view.ui.add(searchWidget, "bottom-right");
+var sources = [{// tim danh ba
+    		featureLayer: new FeatureLayer({url: "http://192.168.23.159:6080/arcgis/rest/services/NETWORK/MapServer/0"}),
+          	searchFields: ["DBDongHoNuoc"],
+          	suggestionTemplate: "{Danh Bạ}",
+          	exactMatch: false,
+          	popupEnabled: false,
+          	outFields: ["*"],
+          	zoomScale: 300,
+			resultSymbol: new PictureMarkerSymbol({url: "location.png", size: 24, width: 24, height: 24, xoffset: 0, yoffset: 0}),
+          	name: "Danh Bạ",
+       	  	placeholder: "Nhập Danh Bạ"}];// END var soure     
+searchWidget.sources = sources;
+// widget Expand
+var expand_legendWidget = new Expand({view: view, content: legendWidget, expandTooltip:"Chú Thích", expandIconClass: "esri-icon-maps"});view.ui.add(expand_legendWidget, "top-left");
+//var expand_searchWidget = new Expand({view: view,  content: searchWidget, expandTooltip:"Tìm Kiếm Danh Bạ", expandIconClass: "esri-icon-group"});
+
+/********************
+* Add Identify
+********************/
+var identifyTask, params;
+view.then(function () {
+on(view, "click", executeIdentifyTask);
+identifyTask = new IdentifyTask(url_network);
+params = new IdentifyParameters();
+params.tolerance = 3;
+params.layerIds = [0,1,2,3,4,5,6,7,8];
+params.layerOption = "all";
+params.width = view.width;
+params.height = view.height;
+params.returnGeometry = true;
+});
+ 
+function executeIdentifyTask(event) {
+params.geometry = event.mapPoint;
+params.mapExtent = view.extent;
+dom.byId("ui-map-view").style.cursor = "wait";
+
+identifyTask.execute(params).then(function (response) {
+var results = response.results;
+return arrayUtils.map(results, function (result) {
+var feature = result.feature;
+var layerName = result.layerName;
+ 
+feature.attributes.layerName = layerName;
+if (layerName === 'Ống Phân Phối') {
+feature.popupTemplate = {title: "THÔNG TIN ỐNG PHÂN PHỐI",
+content:
+"<b>Cỡ Ống: </b> {Cỡ Ống} "+
+"<br><b>Vật Liệu: </b> {Vật Liệu}" +
+"<br><b>Năm Lắp Đặt: </b> {Năm lắp đặt}"+
+"<br><b>Tên Công Trình: </b> {Tên công trình}"+
+"<br><b>Đơn Vị Thiết Kế: </b> {Đơn vị thiết kế}"+
+"<br><b>Đơn Vị Thi Công: </b> {Đơn vị thi công}"
+};
+}
+else if (layerName === 'Ống Truyền Dẫn') {
+feature.popupTemplate = {title: "THÔNG TIN ỐNG TRUYỀN DẪN",
+content:
+"<b>Cỡ Ống: </b> {Cỡ ống} "+
+"<br><b>Vật Liệu: </b> {Vật liệu}" +
+"<br><b>Năm Lắp Đặt: </b> {Năm lắp đặt}"+
+"<br><b>Tên Công Trình: </b> {Tên công trình}"+
+"<br><b>Đơn Vị Thiết Kế: </b> {Đơn vị thiết kế}"+
+"<br><b>Đơn Vị Thi Công: </b> {Đơn vị thi công}"
+};
+}
+else if (layerName === 'Ống Ngánh') {
+feature.popupTemplate = {title: "THÔNG TIN ỐNG DỊCH VỤ",
+content:
+"<b>Cỡ Ống: </b> {Cỡ Ống} "+
+"<br><b>Vật Liệu: </b> {Vật Liệu}"+
+"<br><b>Độ Sâu : </b> {Độ Sâu}"
+};
+}
+else if (layerName === 'Đồng Hồ Khách Hàng') {
+feature.popupTemplate = {title: "THÔNG TIN KHÁCH HÀNG",
+content:
+"<b>Danh Bạ: </b> {Danh Bạ} "+
+"<br><b>Khách Hàng: </b> {Tên Thuê Bao}"+
+"<br><b>Địa Chỉ: </b> {Số Nhà}"+"{Mã Đường}"+
+"<br><b>Cỡ Đồng Hồ: </b> {Cỡ Đồng Hồ}"+
+"<br><b>Hiệu Đồng Hồ: </b> {Mã Hiệu}"+
+"<br><b>Vị Trí Lắp Đặt: </b> {Vị Trí Lắp Đặt}"
+};
+}
+return feature;
+});
+}).then(showPopup);
+// Shows the results of the Identify in a popup once the promise is resolved
+function showPopup(response) {if (response.length > 0) {view.popup.open({features: response,location: event.mapPoint});}dom.byId("ui-map-view").style.cursor = "auto";}
+}// END function executeIdentifyTask
+ 
+});// END require
+</script>
+</head>
+
+<body>
+	<div id="ui-map-view"> </div>
+</body>
+</html>

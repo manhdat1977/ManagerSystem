@@ -1,0 +1,170 @@
+﻿<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.16/"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9 p-3">
+                <label class="mb-2 mr-sm-2">ID:</label>
+                <input type="text" class="mb-2 mr-sm-2" id="txtDanhBa" value="14265210478">
+                <div id="ui-map-view" style="border: 1px solid; height: 600px; margin-top: 10px "></div>
+            </div>
+            <div class="col-sm-3 p-3">
+                <h6>Thông Tin Khách Hàng</h6>
+                <br/>
+                <label class="mb-2 mr-sm-2" id="infoKH"></label>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    require([
+  "esri/Map",
+  "esri/views/MapView",
+  "esri/layers/MapImageLayer",
+  "esri/tasks/QueryTask",
+  "esri/tasks/support/Query",
+  "dojo/_base/array",
+
+  "esri/widgets/LayerList",
+  "esri/widgets/CoordinateConversion",
+
+  "esri/layers/GraphicsLayer",
+  "esri/Graphic",
+
+  "esri/geometry/SpatialReference",
+  "esri/geometry/support/webMercatorUtils",
+], function (
+  Map,
+  MapView,
+  MapImageLayer,
+  QueryTask,
+  Query,
+  arrayUtils,
+  LayerList,
+  CoordinateConversion,
+
+  GraphicsLayer,
+  Graphic,
+  SpatialReference,
+  webMercatorUtils
+) {
+  /*****************************************************************/
+  var url_dma =
+    "https://gis.giadinhwater.vn/server/rest/services/GISN/RanhDMA/MapServer";
+  var layer_dma = new MapImageLayer({
+    url: url_dma,
+    title: "Ranh Vùng DMA",
+    opacity: 0.75,
+  });
+  var url_network =
+    "https://gis.giadinhwater.vn/server/rest/services/GISN/CapNuoc/MapServer";
+  var layer_network = new MapImageLayer({
+    url: url_network,
+    title: "Hệ Thống Cấp Nước",
+    opacity: 1,
+  });
+  var url_basemap =
+    "https://gis.giadinhwater.vn/server/rest/services/GISN/DiaChinh/MapServer";
+  var layer_basemap = new MapImageLayer({
+    url: url_basemap,
+    title: "Bản Đồ Nền",
+    opacity: 1,
+  });
+  var url_boundary =
+    "https://gis.giadinhwater.vn/server/rest/services/GISN/RanhGioi/MapServer";
+  var layer_boundary = new MapImageLayer({
+    url: url_boundary,
+    title: "Ranh Hành Chính",
+    opacity: 0.75,
+  });
+  var graphicsLayer = new GraphicsLayer({
+    title: "Graphics Layer",
+    popupTemplate: { title: "{Name}" },
+  });
+  /*****************************************************************/
+  var map = new Map({
+    layers: [
+      layer_dma,
+      layer_boundary,
+      layer_basemap,
+      layer_network,
+      graphicsLayer,
+    ],
+  });
+  var view = new MapView({ map: map, container: "ui-map-view" });
+  /*****************************************************************/
+  document.getElementById("txtDanhBa").onkeypress = function (event) {
+    if (event.keyCode == 13 || event.which == 13) {
+      var CustomerID = txtDanhBa.value;
+      FindCustomerID(CustomerID);
+    }
+  };
+  function FindCustomerID(CustomerID) {
+    var strQuery = `DBDONGHONUOC = '${CustomerID}'`;
+    var query = new Query();
+    query.returnGeometry = true;
+    query.outFields = ["*"];
+    query.where = strQuery;
+    var queryTask = new QueryTask({
+      url:
+        "https://gis.giadinhwater.vn/server/rest/services/GISN/CapNuoc/MapServer/9",
+    });
+    queryTask.execute(query).then(getResults).catch(promiseRejected);
+  }
+  function getResults(response) {
+    arrayUtils.map(response.features, function (feature) {
+      var featureKH = response.features[0];
+      var X = featureKH.geometry.x.toFixed(3);
+      var Y = featureKH.geometry.y.toFixed(3);
+      console.log(X, Y);
+
+      var attr = featureKH.attributes;
+      var strTT = "KH: " + attr.TENKHACHHANG  +"<br/>"+ 
+                  "DC: " + attr.SONHA +" "+ attr.TENDUONG+"<br/>"+
+                  "HS: " + attr.SOHOSO;
+      document.getElementById("infoKH").innerHTML = strTT;
+      //--------------------------------------------------------------------
+      view.center.x = X;
+      view.center.y = Y;
+      view.goTo({ target: view.center });
+      view.scale = 100;
+      //--------------------------------------------------------------------
+      view.graphics.removeAll()
+      var point = {
+        type: "point",
+        x: X,
+        y: Y,
+        spatialReference: view.spatialReference
+      };
+      var markerSymbol = {
+        type: "simple-marker",
+        color: [255, 255, 126, 0.5]
+      };
+      var pointGraphic = new Graphic({
+        geometry: point,
+        symbol: markerSymbol,
+        attributes : {
+          "name": "Spruce",
+          "family": "Pinaceae"}
+      });
+      view.graphics.add(pointGraphic);
+      //-------------------------------------------------------------------- 
+    });
+  }
+  function promiseRejected(err) {
+    console.error("Promise rejected: ", err.message);
+  }
+});
+
+</script>
+</html>

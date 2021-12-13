@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsNangSuat" targetNamespace="http://tempuri.org/dsNangSuat.xsd" xmlns:mstns="http://tempuri.org/dsNangSuat.xsd" xmlns="http://tempuri.org/dsNangSuat.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="Giai_Quyet_DonConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Giai_Quyet_DonConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.Giai_Quyet_DonConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_NangSuatTableAdapter" GeneratorDataComponentClassName="v_NangSuatTableAdapter" Name="v_NangSuat" UserDataComponentName="v_NangSuatTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Giai_Quyet_DonConnectionString (Web.config)" DbObjectName="Giai_Quyet_Don.dbo.v_NangSuat" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT manvktra, ten_nvkt, donKH, PBD, KH_Phong, KDDVKH_CTDS, sum FROM dbo.v_NangSuat</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="manvktra" DataSetColumn="manvktra" />
+              <Mapping SourceColumn="ten_nvkt" DataSetColumn="ten_nvkt" />
+              <Mapping SourceColumn="donKH" DataSetColumn="donKH" />
+              <Mapping SourceColumn="PBD" DataSetColumn="PBD" />
+              <Mapping SourceColumn="KH_Phong" DataSetColumn="KH_Phong" />
+              <Mapping SourceColumn="KDDVKH_CTDS" DataSetColumn="KDDVKH_CTDS" />
+              <Mapping SourceColumn="sum" DataSetColumn="sum" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsNangSuat" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsNangSuat" msprop:Generator_UserDSName="dsNangSuat">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="v_NangSuat" msprop:Generator_TableClassName="v_NangSuatDataTable" msprop:Generator_TableVarName="tablev_NangSuat" msprop:Generator_TablePropName="v_NangSuat" msprop:Generator_RowDeletingName="v_NangSuatRowDeleting" msprop:Generator_UserTableName="v_NangSuat" msprop:Generator_RowChangingName="v_NangSuatRowChanging" msprop:Generator_RowEvHandlerName="v_NangSuatRowChangeEventHandler" msprop:Generator_RowDeletedName="v_NangSuatRowDeleted" msprop:Generator_RowEvArgName="v_NangSuatRowChangeEvent" msprop:Generator_RowChangedName="v_NangSuatRowChanged" msprop:Generator_RowClassName="v_NangSuatRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="manvktra" msprop:Generator_ColumnVarNameInTable="columnmanvktra" msprop:Generator_ColumnPropNameInRow="manvktra" msprop:Generator_ColumnPropNameInTable="manvktraColumn" msprop:Generator_UserColumnName="manvktra" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ten_nvkt" msprop:Generator_ColumnVarNameInTable="columnten_nvkt" msprop:Generator_ColumnPropNameInRow="ten_nvkt" msprop:Generator_ColumnPropNameInTable="ten_nvktColumn" msprop:Generator_UserColumnName="ten_nvkt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="donKH" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndonKH" msprop:Generator_ColumnPropNameInRow="donKH" msprop:Generator_ColumnPropNameInTable="donKHColumn" msprop:Generator_UserColumnName="donKH" type="xs:int" minOccurs="0" />
+              <xs:element name="PBD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPBD" msprop:Generator_ColumnPropNameInRow="PBD" msprop:Generator_ColumnPropNameInTable="PBDColumn" msprop:Generator_UserColumnName="PBD" type="xs:int" minOccurs="0" />
+              <xs:element name="KH_Phong" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnKH_Phong" msprop:Generator_ColumnPropNameInRow="KH_Phong" msprop:Generator_ColumnPropNameInTable="KH_PhongColumn" msprop:Generator_UserColumnName="KH_Phong" type="xs:int" minOccurs="0" />
+              <xs:element name="KDDVKH_CTDS" msprop:Generator_ColumnVarNameInTable="columnKDDVKH_CTDS" msprop:Generator_ColumnPropNameInRow="KDDVKH_CTDS" msprop:Generator_ColumnPropNameInTable="KDDVKH_CTDSColumn" msprop:Generator_UserColumnName="KDDVKH_CTDS" type="xs:int" minOccurs="0" />
+              <xs:element name="sum" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsum" msprop:Generator_ColumnPropNameInRow="sum" msprop:Generator_ColumnPropNameInTable="sumColumn" msprop:Generator_UserColumnName="sum" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

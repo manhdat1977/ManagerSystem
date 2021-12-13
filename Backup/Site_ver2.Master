@@ -1,0 +1,454 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site_ver2.master.cs"
+    Inherits="ManagerSystem.Site_ver2" %>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Phòng Kinh doanh Dịch vụ Khách hàng</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+        rel="stylesheet">
+    <asp:ContentPlaceHolder ID="ContentCSS" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-info">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Messages Dropdown Menu -->
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">
+                            <asp:Label runat="server" ID="lblSoDon"></asp:Label></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">
+                            <asp:Label runat="server" ID="lblThongbao"></asp:Label></span>
+                        <div class="dropdown-divider"></div>
+                        <a href="xemtatca.aspx" class="dropdown-item dropdown-footer">Xem tất cả</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="default.aspx" class="brand-link">
+                <img src="hinhnhanvien/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
+                <span class="brand-text font-weight-light">P.KDDVKH</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img class="img-circle elevation-2" alt="User Image" runat="server" src="~/hinhnhanvien/user.png" id="imgUser">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">
+                            <asp:Label runat="server" ID="txtUsername"></asp:Label></a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Quản lý tài khoản
+               
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item" runat="server" id="mn_taonguoidung" visible="false">
+                                    <a href="taonguoidung.aspx" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tạo người dùng</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" runat="server" id="mn_doimatkhau" visible="false">
+                                    <a href="doimatkhau.aspx" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Đổi mật khẩu</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview" runat="server" id="mn_hosokiemtra" visible="false">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>
+                                    Hồ sơ kiểm tra<i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item" runat="server" id="mn_capnhatdonthu" visible="false">
+                                    <a href="capnhatdonthu.aspx" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cập nhật đơn thư</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="dontrongngay.aspx" class="nav-link" runat="server" id="mn_dontrongngay" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Đơn trong ngày</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="giaiquyetdon.aspx" class="nav-link" runat="server" id="mn_giaiquyetdon" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Giải quyết hồ sơ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="duyethoso.aspx" class="nav-link" runat="server" id="mn_duyethoso" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Duyệt hồ sơ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="nangsuatktv.aspx" class="nav-link" runat="server" id="mn_nangsuatktv" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Năng suất</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="vungdma.aspx" class="nav-link" runat="server" id="mn_vungdma" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Năng suất theo DMA</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-address-book"></i>
+                                <p>
+                                    Quản lý khách hàng<i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="SoNhanDon.aspx" class="nav-link" runat="server" id="mn_sonhandon" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Sổ nhận đơn</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="capnhatbiendong.aspx" class="nav-link" runat="server" id="mn_capnhatbiendong" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cập nhật biến động</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="inbiendong.aspx" class="nav-link" runat="server" id="mn_inbiendong" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>In biến động</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="thongkeloaidon.aspx" class="nav-link" runat="server" id="mn_thongkeloaidon" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thống kê KN-ĐKĐM</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="cattam.aspx" class="nav-link" runat="server" id="mn_cattam" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cắt tạm</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="cathuy.aspx" class="nav-link" runat="server" id="mn_cathuy" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cắt hủy</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="hethan.aspx" class="nav-link" runat="server" id="mn_hethan" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Hết hạn</p>
+                                    </a>
+                                </li>
+                                  <li class="nav-item">
+                                    <a href="capnhatsdt.aspx" class="nav-link" runat="server" id="mn_capnhatsdt" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cập nhật SĐT</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="importimage.aspx" class="nav-link" runat="server" id="mn_importimage" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cập nhật bản vẽ</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-wrench"></i>
+                                <p>
+                                    Sửa ống trong<i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="taoyeucausot.aspx" class="nav-link" runat="server" id="mn_taoyeucausot" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tạo yêu cầu</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="capnhatSOT.aspx" class="nav-link" runat="server" id="mn_capnhatsuachua" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cập nhật sửa chữa</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="thongkeSOT.aspx" class="nav-link" runat="server" id="mn_thongkeSOT" visible="false">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thống kê</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                         <li class="nav-item">
+                            <a href="send_sms.aspx" class="nav-link">
+                                <i class="nav-icon fas fa-sms"></i>
+                                <p>
+                                    Gửi SMS
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="vanban.aspx" class="nav-link">
+                                <i class="nav-icon fas fa-file-pdf"></i>
+                                <p>
+                                    Văn bản
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://gis.giadinhwater.vn/portal/apps/webappviewer/index.html?id=f3f842a1e563490684b46f77993eff06" class="nav-link" target="_blank">
+                                <i class="nav-icon fas fa-globe-asia"></i>
+                                <p>
+                                    Gia Định GIS
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="timkiem.aspx" class="nav-link">
+                                <i class="nav-icon fas fa-search"></i>
+                                <p>
+                                    Tìm kiếm
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="login.aspx" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>
+                                    Đăng xuất
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <asp:ContentPlaceHolder runat="server" ID="ContentHeader">
+                </asp:ContentPlaceHolder>
+                <%--      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v1</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div>--%>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2020 <a href="#">Công ty Cổ phần Cấp nước Gia Định</a>.</strong>
+            All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.0.0
+    </div>
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <!-- Select2 -->
+    <script src="plugins/select2/js/select2.full.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="plugins/moment/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            //Datemask2 mm/dd/yyyy
+            $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+            //Money Euro
+            $('[data-mask]').inputmask()
+
+            //Date range picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+            //Date range picker
+            $('#reservation').daterangepicker()
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                locale: {
+                    format: 'MM/DD/YYYY hh:mm A'
+                }
+            })
+            //Date range as a button
+            $('#daterange-btn').daterangepicker(
+                {
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment()
+                },
+                function (start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                }
+            )
+
+            //Timepicker
+            $('#timepicker').datetimepicker({
+                format: 'LT'
+            })
+
+            //Bootstrap Duallistbox
+            $('.duallistbox').bootstrapDualListbox()
+
+            //Colorpicker
+            $('.my-colorpicker1').colorpicker()
+            //color picker with addon
+            $('.my-colorpicker2').colorpicker()
+
+            $('.my-colorpicker2').on('colorpickerChange', function (event) {
+                $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+            });
+
+            $("input[data-bootstrap-switch]").each(function () {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            });
+
+        })
+    </script>
+</body>
+</html>

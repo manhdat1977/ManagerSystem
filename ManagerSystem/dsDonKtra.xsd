@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsDonKtra" targetNamespace="http://tempuri.org/dsDonKtra.xsd" xmlns:mstns="http://tempuri.org/dsDonKtra.xsd" xmlns="http://tempuri.org/dsDonKtra.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionString.ConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DS_DKN_KTVTableAdapter" GeneratorDataComponentClassName="DS_DKN_KTVTableAdapter" Name="DS_DKN_KTV" UserDataComponentName="DS_DKN_KTVTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString (Web.config)" DbObjectName="Bang_Ke_Dieu_Chinh.dbo.DS_DKN_KTV" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT masndon, dbo, MLTrinh, KHang, DChi, SoCVBP, bpyeucau, NgayLapCVBP, SDon, LDon, NDDon, NNDon, Qtt, Ptt, NVKTra, KhongKiemTra, NhomKT, MaNVKTra, DThoaiKH, MaNV, DThoaiKH1, DThoaiKH2, GChu, XuLy, NgayXuLy FROM dbo.DS_DKN_KTV</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="masndon" DataSetColumn="masndon" />
+              <Mapping SourceColumn="dbo" DataSetColumn="dbo" />
+              <Mapping SourceColumn="MLTrinh" DataSetColumn="MLTrinh" />
+              <Mapping SourceColumn="KHang" DataSetColumn="KHang" />
+              <Mapping SourceColumn="DChi" DataSetColumn="DChi" />
+              <Mapping SourceColumn="SoCVBP" DataSetColumn="SoCVBP" />
+              <Mapping SourceColumn="bpyeucau" DataSetColumn="bpyeucau" />
+              <Mapping SourceColumn="NgayLapCVBP" DataSetColumn="NgayLapCVBP" />
+              <Mapping SourceColumn="SDon" DataSetColumn="SDon" />
+              <Mapping SourceColumn="LDon" DataSetColumn="LDon" />
+              <Mapping SourceColumn="NDDon" DataSetColumn="NDDon" />
+              <Mapping SourceColumn="NNDon" DataSetColumn="NNDon" />
+              <Mapping SourceColumn="Qtt" DataSetColumn="Qtt" />
+              <Mapping SourceColumn="Ptt" DataSetColumn="Ptt" />
+              <Mapping SourceColumn="NVKTra" DataSetColumn="NVKTra" />
+              <Mapping SourceColumn="KhongKiemTra" DataSetColumn="KhongKiemTra" />
+              <Mapping SourceColumn="NhomKT" DataSetColumn="NhomKT" />
+              <Mapping SourceColumn="MaNVKTra" DataSetColumn="MaNVKTra" />
+              <Mapping SourceColumn="DThoaiKH" DataSetColumn="DThoaiKH" />
+              <Mapping SourceColumn="MaNV" DataSetColumn="MaNV" />
+              <Mapping SourceColumn="DThoaiKH1" DataSetColumn="DThoaiKH1" />
+              <Mapping SourceColumn="DThoaiKH2" DataSetColumn="DThoaiKH2" />
+              <Mapping SourceColumn="GChu" DataSetColumn="GChu" />
+              <Mapping SourceColumn="XuLy" DataSetColumn="XuLy" />
+              <Mapping SourceColumn="NgayXuLy" DataSetColumn="NgayXuLy" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsDonKtra" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsDonKtra" msprop:Generator_UserDSName="dsDonKtra">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DS_DKN_KTV" msprop:Generator_TableClassName="DS_DKN_KTVDataTable" msprop:Generator_TableVarName="tableDS_DKN_KTV" msprop:Generator_TablePropName="DS_DKN_KTV" msprop:Generator_RowDeletingName="DS_DKN_KTVRowDeleting" msprop:Generator_RowChangingName="DS_DKN_KTVRowChanging" msprop:Generator_RowEvHandlerName="DS_DKN_KTVRowChangeEventHandler" msprop:Generator_RowDeletedName="DS_DKN_KTVRowDeleted" msprop:Generator_UserTableName="DS_DKN_KTV" msprop:Generator_RowChangedName="DS_DKN_KTVRowChanged" msprop:Generator_RowEvArgName="DS_DKN_KTVRowChangeEvent" msprop:Generator_RowClassName="DS_DKN_KTVRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="masndon" msprop:Generator_ColumnVarNameInTable="columnmasndon" msprop:Generator_ColumnPropNameInRow="masndon" msprop:Generator_ColumnPropNameInTable="masndonColumn" msprop:Generator_UserColumnName="masndon">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dbo" msprop:Generator_ColumnVarNameInTable="columndbo" msprop:Generator_ColumnPropNameInRow="dbo" msprop:Generator_ColumnPropNameInTable="dboColumn" msprop:Generator_UserColumnName="dbo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MLTrinh" msprop:Generator_ColumnVarNameInTable="columnMLTrinh" msprop:Generator_ColumnPropNameInRow="MLTrinh" msprop:Generator_ColumnPropNameInTable="MLTrinhColumn" msprop:Generator_UserColumnName="MLTrinh" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KHang" msprop:Generator_ColumnVarNameInTable="columnKHang" msprop:Generator_ColumnPropNameInRow="KHang" msprop:Generator_ColumnPropNameInTable="KHangColumn" msprop:Generator_UserColumnName="KHang" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DChi" msprop:Generator_ColumnVarNameInTable="columnDChi" msprop:Generator_ColumnPropNameInRow="DChi" msprop:Generator_ColumnPropNameInTable="DChiColumn" msprop:Generator_UserColumnName="DChi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SoCVBP" msprop:Generator_ColumnVarNameInTable="columnSoCVBP" msprop:Generator_ColumnPropNameInRow="SoCVBP" msprop:Generator_ColumnPropNameInTable="SoCVBPColumn" msprop:Generator_UserColumnName="SoCVBP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bpyeucau" msprop:Generator_ColumnVarNameInTable="columnbpyeucau" msprop:Generator_ColumnPropNameInRow="bpyeucau" msprop:Generator_ColumnPropNameInTable="bpyeucauColumn" msprop:Generator_UserColumnName="bpyeucau" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NgayLapCVBP" msprop:Generator_ColumnVarNameInTable="columnNgayLapCVBP" msprop:Generator_ColumnPropNameInRow="NgayLapCVBP" msprop:Generator_ColumnPropNameInTable="NgayLapCVBPColumn" msprop:Generator_UserColumnName="NgayLapCVBP" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SDon" msprop:Generator_ColumnVarNameInTable="columnSDon" msprop:Generator_ColumnPropNameInRow="SDon" msprop:Generator_ColumnPropNameInTable="SDonColumn" msprop:Generator_UserColumnName="SDon" type="xs:short" />
+              <xs:element name="LDon" msprop:Generator_ColumnVarNameInTable="columnLDon" msprop:Generator_ColumnPropNameInRow="LDon" msprop:Generator_ColumnPropNameInTable="LDonColumn" msprop:Generator_UserColumnName="LDon">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NDDon" msprop:Generator_ColumnVarNameInTable="columnNDDon" msprop:Generator_ColumnPropNameInRow="NDDon" msprop:Generator_ColumnPropNameInTable="NDDonColumn" msprop:Generator_UserColumnName="NDDon" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NNDon" msprop:Generator_ColumnVarNameInTable="columnNNDon" msprop:Generator_ColumnPropNameInRow="NNDon" msprop:Generator_ColumnPropNameInTable="NNDonColumn" msprop:Generator_UserColumnName="NNDon" type="xs:dateTime" />
+              <xs:element name="Qtt" msprop:Generator_ColumnVarNameInTable="columnQtt" msprop:Generator_ColumnPropNameInRow="Qtt" msprop:Generator_ColumnPropNameInTable="QttColumn" msprop:Generator_UserColumnName="Qtt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ptt" msprop:Generator_ColumnVarNameInTable="columnPtt" msprop:Generator_ColumnPropNameInRow="Ptt" msprop:Generator_ColumnPropNameInTable="PttColumn" msprop:Generator_UserColumnName="Ptt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NVKTra" msprop:Generator_ColumnVarNameInTable="columnNVKTra" msprop:Generator_ColumnPropNameInRow="NVKTra" msprop:Generator_ColumnPropNameInTable="NVKTraColumn" msprop:Generator_UserColumnName="NVKTra" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KhongKiemTra" msprop:Generator_ColumnVarNameInTable="columnKhongKiemTra" msprop:Generator_ColumnPropNameInRow="KhongKiemTra" msprop:Generator_ColumnPropNameInTable="KhongKiemTraColumn" msprop:Generator_UserColumnName="KhongKiemTra" type="xs:boolean" minOccurs="0" />
+              <xs:element name="NhomKT" msprop:Generator_ColumnVarNameInTable="columnNhomKT" msprop:Generator_ColumnPropNameInRow="NhomKT" msprop:Generator_ColumnPropNameInTable="NhomKTColumn" msprop:Generator_UserColumnName="NhomKT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MaNVKTra" msprop:Generator_ColumnVarNameInTable="columnMaNVKTra" msprop:Generator_ColumnPropNameInRow="MaNVKTra" msprop:Generator_ColumnPropNameInTable="MaNVKTraColumn" msprop:Generator_UserColumnName="MaNVKTra" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DThoaiKH" msprop:Generator_ColumnVarNameInTable="columnDThoaiKH" msprop:Generator_ColumnPropNameInRow="DThoaiKH" msprop:Generator_ColumnPropNameInTable="DThoaiKHColumn" msprop:Generator_UserColumnName="DThoaiKH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MaNV" msprop:Generator_ColumnVarNameInTable="columnMaNV" msprop:Generator_ColumnPropNameInRow="MaNV" msprop:Generator_ColumnPropNameInTable="MaNVColumn" msprop:Generator_UserColumnName="MaNV" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DThoaiKH1" msprop:Generator_ColumnVarNameInTable="columnDThoaiKH1" msprop:Generator_ColumnPropNameInRow="DThoaiKH1" msprop:Generator_ColumnPropNameInTable="DThoaiKH1Column" msprop:Generator_UserColumnName="DThoaiKH1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DThoaiKH2" msprop:Generator_ColumnVarNameInTable="columnDThoaiKH2" msprop:Generator_ColumnPropNameInRow="DThoaiKH2" msprop:Generator_ColumnPropNameInTable="DThoaiKH2Column" msprop:Generator_UserColumnName="DThoaiKH2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GChu" msprop:Generator_ColumnVarNameInTable="columnGChu" msprop:Generator_ColumnPropNameInRow="GChu" msprop:Generator_ColumnPropNameInTable="GChuColumn" msprop:Generator_UserColumnName="GChu" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="XuLy" msprop:Generator_ColumnVarNameInTable="columnXuLy" msprop:Generator_ColumnPropNameInRow="XuLy" msprop:Generator_ColumnPropNameInTable="XuLyColumn" msprop:Generator_UserColumnName="XuLy" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NgayXuLy" msprop:Generator_ColumnVarNameInTable="columnNgayXuLy" msprop:Generator_ColumnPropNameInRow="NgayXuLy" msprop:Generator_ColumnPropNameInTable="NgayXuLyColumn" msprop:Generator_UserColumnName="NgayXuLy" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DS_DKN_KTV" />
+      <xs:field xpath="mstns:masndon" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

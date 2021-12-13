@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+ 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+ 	<title>Tìm Đường</title>
+	<link rel="stylesheet" href="http://js.arcgis.com/4.3/esri/css/main.css">
+	<script src="http://js.arcgis.com/4.3/"></script>
+  <style>
+ 	html, body { margin: 0; padding: 0; width: 100%; height: 100%; }
+ 	#ui-map-view { margin: 0; padding: 0; width: 100%; height: 100%; float:left; }
+  </style>
+  <script>
+      require([
+"esri/Map",
+"esri/views/MapView",
+"esri/layers/OpenStreetMapLayer",
+"esri/layers/MapImageLayer",
+"esri/layers/FeatureLayer",
+"esri/widgets/Expand",
+"esri/widgets/Compass",
+"esri/widgets/LayerList",
+"esri/widgets/Legend",
+"esri/widgets/Home",
+"esri/widgets/Compass",
+"esri/widgets/Locate",
+"esri/widgets/Search",
+"esri/widgets/Print",
+"esri/Graphic",
+"esri/layers/GraphicsLayer",
+"esri/tasks/RouteTask",
+"esri/tasks/support/RouteParameters",
+"esri/tasks/support/FeatureSet",
+"esri/symbols/SimpleMarkerSymbol",
+"esri/symbols/SimpleLineSymbol",
+"esri/symbols/PictureMarkerSymbol",
+"esri/Color",
+"dojo/dom",
+"dojo/on",
+"dojo/domReady!"
+], function (Map, MapView, OpenStreetMapLayer, MapImageLayer, FeatureLayer,
+				Expand, Compass, LayerList, Legend, Home, Compass, Locate, Search, Print,
+				Graphic, GraphicsLayer, RouteTask, RouteParameters, FeatureSet, SimpleMarkerSymbol, SimpleLineSymbol, PictureMarkerSymbol, Color, dom, on) {
+    // khai báo biến tìm đường 
+    var routeTask = new RouteTask({ url: "http://192.168.23.159:6080/arcgis/rest/services/Untitled/NAServer/Route" });
+    var routeLyr = new GraphicsLayer({ title: 'Hướng Dẫn Đường Đi' });
+    var routeParams = new RouteParameters({ stops: new FeatureSet(), returnDirections: true, outSpatialReference: { wkid: 4326} });
+    var stopSymbol = new PictureMarkerSymbol({ url: "location.png", size: 25, width: 25, height: 25, xoffset: 0, yoffset: 0, angle: 0 })
+    var routeSymbol = new SimpleLineSymbol({ style: "short-dot", color: "black", width: 2, miterLimit: 4 });
+    var locateSymbol = new SimpleMarkerSymbol({ style: "circle", color: "yellow", size: 10, outline: { width: 2} });
+    // khai báo biến bản đồ
+    var url_basemap = "http://192.168.23.159:6080/arcgis/rest/services/DiaChinh/MapServer";
+    var layer_basemap = new MapImageLayer({ url: url_basemap, title: 'Bản Đồ Nền', opacity: 1 });
+    var url_dma = "http://192.168.23.159:6080/arcgis/rest/services/DMA/MapServer";
+    var layer_dma = new MapImageLayer({ url: url_dma, title: 'Ranh Vùng DMA', opacity: 0.6 });
+    var url_boundary = "http://192.168.23.159:6080/arcgis/rest/services/RanhHanhChinh/MapServer";
+    var layer_boundary = new MapImageLayer({ url: url_boundary, title: 'Ranh Hành Chính', opacity: 1 });
+    var layer_osm = new OpenStreetMapLayer({ title: 'Bản Đồ Online', visible: false });
+    // hiển thị bản đồ
+    var map = new Map({ layers: [layer_dma, layer_boundary, layer_osm, layer_basemap, routeLyr] });
+    var view = new MapView({ map: map, center: [106.70, 10.81], zoom: 14, container: "ui-map-view" });
+    // icon PictureMarkerSymbol
+    var location = new SimpleMarkerSymbol({ style: "circle", color: "#00ffff", size: 8, outline: { width: 1} });
+    // widget Home
+    var homeBtnWidget = new Home({ view: view });
+    view.ui.add(homeBtnWidget, "top-left");
+    // widget layerList
+    var layerListWidget = new LayerList({ view: view });
+    var expand_layerListWidget = new Expand({ view: view, content: layerListWidget, expandTooltip: "Tắt/Mở Lớp Dữ Liệu", expandIconClass: "esri-icon-layers" });
+    view.ui.add(expand_layerListWidget, "top-left");
+    // widget Legend
+    //var legendWidget = new Legend({view: view,layerInfos: [{layer: layer_network, title: "Bảng Chú Thích"}]});
+    //var expand_legendWidget = new Expand({view: view,content: legendWidget,expandTooltip:"Chú Thích Ký Hiệu",expandIconClass: "esri-icon-environment-settings"});
+    //view.ui.add(expand_legendWidget, "top-left");
+    // widget Locate
+    var locateBtn = new Locate({ view: view, graphic: Graphic({ symbol: location }) });
+    view.ui.add(locateBtn, { position: "top-left" });
+    // widget Search
+    var searchWidget = new Search({ view: view, allPlaceholder: "Nhập Thông Tin Cần Tìm" });
+    var sources = [
+    	{
+    	    featureLayer: new FeatureLayer({ url: "http://192.168.23.159:6080/arcgis/rest/services/DHKHWGS84WMAS/MapServer/0" }),
+    	    searchFields: ["DBDongHoNuoc"],
+    	    suggestionTemplate: "{Danh Bạ}",
+    	    exactMatch: true,
+    	    popupEnabled: false,
+    	    outFields: ["*"],
+    	    zoomScale: 500,
+    	    resultSymbol: location,
+    	    name: "Tìm Danh Bạ",
+    	    placeholder: "Nhập Danh Bạ"
+    	}];
+    searchWidget.sources = sources;
+    var expand_searchWidget = new Expand({ view: view, content: searchWidget, expandTooltip: "Tìm Kiếm Thông Tin", expandIconClass: "esri-icon-search" });
+    view.ui.add(expand_searchWidget, "top-left");
+    // widget Compass
+    var compassWidget = new Compass({ view: view });
+    view.ui.add(compassWidget, { position: "bottom-right" });
+    // widget Print
+    var printWidget = new Print({ view: view, printServiceUrl: "http://192.168.23.159:6080/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task" });
+    var expand_printWidget = new Expand({ view: view, content: printWidget, expandTooltip: "In Ấn", expandIconClass: "esri-icon-printer" });
+    view.ui.add(expand_printWidget, "bottom-left");
+
+
+    on(view, "click", addStop);
+    function addStop(event) {
+        var stop = new Graphic({ geometry: event.mapPoint, symbol: stopSymbol });
+        routeLyr.add(stop);
+        routeParams.stops.features.push(stop);
+        if (routeParams.stops.features.length >= 2) { routeTask.solve(routeParams).then(showRoute); }
+    }
+    function showRoute(data) {
+        var routeResult = data.routeResults[0].route;
+        routeResult.symbol = routeSymbol;
+        routeLyr.add(routeResult);
+    }
+
+}); 
+  </script>
+</head>
+
+<body>
+	<!-- div VIEW -->
+	<div id="ui-map-view"> 	
+	</div>
+</body>
+</html>

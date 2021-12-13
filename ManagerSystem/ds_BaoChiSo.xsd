@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ds_BaoChiSo" targetNamespace="http://tempuri.org/ds_BaoChiSo.xsd" xmlns:mstns="http://tempuri.org/ds_BaoChiSo.xsd" xmlns="http://tempuri.org/ds_BaoChiSo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString1 (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionString1.ConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Filter_List_BaoChiSoTableAdapter" GeneratorDataComponentClassName="Filter_List_BaoChiSoTableAdapter" Name="Filter_List_BaoChiSo" UserDataComponentName="Filter_List_BaoChiSoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionString1 (Web.config)" DbObjectName="ChamSocKhachHang.dbo.Filter_List_BaoChiSo" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, Dbo, SDT, KH, DChi1, DChi2, MLT, CSo_Moi, NgayTao FROM dbo.Filter_List_BaoChiSo</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="Dbo" DataSetColumn="Dbo" />
+              <Mapping SourceColumn="SDT" DataSetColumn="SDT" />
+              <Mapping SourceColumn="KH" DataSetColumn="KH" />
+              <Mapping SourceColumn="DChi1" DataSetColumn="DChi1" />
+              <Mapping SourceColumn="DChi2" DataSetColumn="DChi2" />
+              <Mapping SourceColumn="MLT" DataSetColumn="MLT" />
+              <Mapping SourceColumn="CSo_Moi" DataSetColumn="CSo_Moi" />
+              <Mapping SourceColumn="NgayTao" DataSetColumn="NgayTao" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ds_BaoChiSo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ds_BaoChiSo" msprop:Generator_UserDSName="ds_BaoChiSo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Filter_List_BaoChiSo" msprop:Generator_TableClassName="Filter_List_BaoChiSoDataTable" msprop:Generator_TableVarName="tableFilter_List_BaoChiSo" msprop:Generator_TablePropName="Filter_List_BaoChiSo" msprop:Generator_RowDeletingName="Filter_List_BaoChiSoRowDeleting" msprop:Generator_RowChangingName="Filter_List_BaoChiSoRowChanging" msprop:Generator_RowEvHandlerName="Filter_List_BaoChiSoRowChangeEventHandler" msprop:Generator_RowDeletedName="Filter_List_BaoChiSoRowDeleted" msprop:Generator_UserTableName="Filter_List_BaoChiSo" msprop:Generator_RowChangedName="Filter_List_BaoChiSoRowChanged" msprop:Generator_RowEvArgName="Filter_List_BaoChiSoRowChangeEvent" msprop:Generator_RowClassName="Filter_List_BaoChiSoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="Dbo" msprop:Generator_ColumnVarNameInTable="columnDbo" msprop:Generator_ColumnPropNameInRow="Dbo" msprop:Generator_ColumnPropNameInTable="DboColumn" msprop:Generator_UserColumnName="Dbo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SDT" msprop:Generator_ColumnVarNameInTable="columnSDT" msprop:Generator_ColumnPropNameInRow="SDT" msprop:Generator_ColumnPropNameInTable="SDTColumn" msprop:Generator_UserColumnName="SDT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="KH" msprop:Generator_ColumnVarNameInTable="columnKH" msprop:Generator_ColumnPropNameInRow="KH" msprop:Generator_ColumnPropNameInTable="KHColumn" msprop:Generator_UserColumnName="KH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DChi1" msprop:Generator_ColumnVarNameInTable="columnDChi1" msprop:Generator_ColumnPropNameInRow="DChi1" msprop:Generator_ColumnPropNameInTable="DChi1Column" msprop:Generator_UserColumnName="DChi1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DChi2" msprop:Generator_ColumnVarNameInTable="columnDChi2" msprop:Generator_ColumnPropNameInRow="DChi2" msprop:Generator_ColumnPropNameInTable="DChi2Column" msprop:Generator_UserColumnName="DChi2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MLT" msprop:Generator_ColumnVarNameInTable="columnMLT" msprop:Generator_ColumnPropNameInRow="MLT" msprop:Generator_ColumnPropNameInTable="MLTColumn" msprop:Generator_UserColumnName="MLT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CSo_Moi" msprop:Generator_ColumnVarNameInTable="columnCSo_Moi" msprop:Generator_ColumnPropNameInRow="CSo_Moi" msprop:Generator_ColumnPropNameInTable="CSo_MoiColumn" msprop:Generator_UserColumnName="CSo_Moi" type="xs:int" minOccurs="0" />
+              <xs:element name="NgayTao" msprop:Generator_ColumnVarNameInTable="columnNgayTao" msprop:Generator_ColumnPropNameInRow="NgayTao" msprop:Generator_ColumnPropNameInTable="NgayTaoColumn" msprop:Generator_UserColumnName="NgayTao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Filter_List_BaoChiSo" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
